@@ -1,41 +1,58 @@
 # Question: write an efficient sorting algorithm.
-
+  
 def quicksort(array, low, high)
   return nil if array.nil?
   return array if array.length == 0
 
   i = low
-  j = high
+  k = high
 
   pivot = array[low + (high-low)/2]
   
-  while i <= j
+  while i <= k
 
     while array[i] < pivot
       i += 1
     end
 
-    while array[j] > pivot
-      j -= 1
+    while array[k] > pivot
+      k -= 1
     end
 
-    if i <= j
-      temp = array[i]
-      array[i] = array[j]
-      array[j] = temp
+    if i <= k
+      temp  = array[i]
+      array[i] = array[k]
+      array[k] = temp
       i += 1
-      j -= 1
+      k -= 1
     end
   end
 
-  quicksort(array, low, j) if low < j
+  quicksort(array, low, k) if low < k
   quicksort(array, i, high) if i < high
 
   return array
-  p array
 end
 
-a = [6,7,8,20,1,2,3]
+def mergesort(array)
+  if list.length <= 1
+    list
+  else
+    mid = (list.length / 2).floor
+    left = mergesort(array[0..mid-1])
+    right = mergesort(array[mid..array.length])
+    merge(left, right)
+  end
+end
 
-quicksort(a,0,7)
-
+def merge(left, right)
+  if left.empty?
+    right
+  elsif right.empty?
+    left
+  elsif left.first < righ.first
+    [left.first] + merge(left[1..left.length], right)
+  else
+    [right.first] + merge(left, right[1..right.length])
+  end
+end
