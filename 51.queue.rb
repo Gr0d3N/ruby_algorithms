@@ -7,53 +7,53 @@ class Node
   end
 end
 
-class Stack
-  attr_accessor :top, :size
+class Queue
+  attr_accessor :head, :tail, :size
 
   def initialize(data)
-    @top = Node.new(data)
+    @head = @tail = Node.new(data)
     @size = 1
   end
 
-  def push(data)
-    if @top.nil?
-      @top = Node.new(data) 
+  def add(data)
+    if @head.nil?
+      @head = Node.new(data) if @head.nil?
     else
-      new_top = Node.new(data)
-      new_top.next = @top
-      @top = new_top
+      new_tail = Node.new(data)
+      @tail.next = new_tail
+      @tail = new_tail
     end
     @size += 1
   end
 
-  def push_many(array)
+  def add_many(array)
     if array.length > 0
       array.each do |i|
-        self.push(i)
+        self.add(i)
       end
     end
   end
-
-  def pop
-    return nil if @top.nil?
-    top_data = @top.data
-    @top = @top.next
+  
+  def remove
+    return nil if @head.nil?
+    head_data = @head.data
+    @head = @head.next
     @size -= 1
-    return top_data
+    return head_data
   end
 
   def peek
-    return nil if @top.nil?
-    return @top.data
+    return nil if @head.nil?
+    return @head.data
   end
 
   def is_empty?
-    return @top == nil
+    return @head == nil
   end
 
   def to_s
-    return nil if @top.nil?
-    current = @top
+    return nil if @head.nil?
+    current = @head
     str = ""
     while !current.nil?
       str += "#{current.data} "
@@ -63,8 +63,8 @@ class Stack
   end
 
   def to_a
-    return nil if @top.nil?
-    current = @top
+    return nil if @head.nil?
+    current = @head
     array = []
     while !current.nil?
       array << current.data
