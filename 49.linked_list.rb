@@ -18,7 +18,7 @@ class LinkedList
   end
 
   def append(data)
-    self.initialize(data) if @head.nil?
+    return @head = Node.new(data) if @head.nil?
     current = @head
     while !current.next.nil?
       current = current.next
@@ -36,7 +36,7 @@ class LinkedList
   end
 
   def prepend(data)
-    self.initialize(data) if @head.nil?
+    return @head = Node.new(data) if @head.nil?
     new_head = Node.new(data)
     new_head.next = @head
     @head = new_head
@@ -45,7 +45,13 @@ class LinkedList
 
   def delete(data)
     return nil if @head.nil?
-    @head = @head.next if @head.data == data
+    if @head.data == data
+      if @head.next.nil?
+        return @head = nil
+      else
+        return @head = @head.next
+      end
+    end
     current = @head
     while !current.next.nil?
       if current.next.data == data
@@ -56,6 +62,7 @@ class LinkedList
   end
 
   def to_s
+    return nil if @head.nil?
     current = @head
     str = ""
     while !current.nil?
