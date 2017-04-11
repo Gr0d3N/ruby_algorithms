@@ -9,4 +9,5 @@ def unique_characters?(str)
     end
     chars[str[i]] = true
   end
+  return true
 end

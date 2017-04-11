@@ -7,28 +7,15 @@
 #input:{abcd}
 #output:{} {d} {b} {c} {a} {bc} {da} {ca} {dc} {db} {ba} {dbca} {bca} {dba} {dca} {dbc}
 
-def subset(array)
-  subsets = [[]]
-
-  array.each do |i|
-    offset = 0
-    index = array.index(i)
-    while offset < array.length
-      set = [] 
-      (array[index..offset]).each do |y|
-        set << y
+def subsets(array)
+  n = array.length
+  (0..1<<n).each do |i|
+    print "{"
+    (0..n).each do |k|
+      if (i & 1<<k) > 0
+        print array[k]
       end
-      subsets << set if !set.empty?
-      offset += 1
     end
+    puts "}"
   end
-
-  array[0..array.length].each do |i|
-    a = array.select { |c| c != i }
-    subsets << a if !subsets.include?(a)
-  end
-  return subsets
-  p subsets
 end
-  
-subset(['a', 'b', 'c'])

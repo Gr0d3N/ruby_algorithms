@@ -6,7 +6,11 @@ class Node
   def identical?(t1, t2)
     return true if t1.data == nil && t2.data == nil
     return false if t1.data == nil || t2.data == nil
-    return identical?(t1.left, t2.left) && identical?(t1.right, t2.right)
+    if t1.data == t2.data
+      return identical?(t1.left, t2.left) && identical?(t1.right, t2.right)
+    else
+      return false
+    end
   end
 
   def sub_tree?(main, sub)
