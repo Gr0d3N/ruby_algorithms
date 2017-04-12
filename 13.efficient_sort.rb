@@ -1,7 +1,7 @@
 # Question: write an efficient sorting algorithm.
   
 def quicksort(array, low, high)
-  return nil if array.nil?
+  return false if array.nil?
   return array if array.length == 0
 
   i = low
@@ -35,10 +35,10 @@ def quicksort(array, low, high)
 end
 
 def mergesort(array)
-  if list.length <= 1
-    list
+  if array.length <= 1
+    array
   else
-    mid = (list.length / 2).floor
+    mid = (array.length / 2).floor
     left = mergesort(array[0..mid-1])
     right = mergesort(array[mid..array.length])
     merge(left, right)
