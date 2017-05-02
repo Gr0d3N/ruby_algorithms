@@ -19,3 +19,21 @@ def missing_number(array)
   end
   return nil
 end
+
+def missing_number2(array)
+  array.sort!
+  l = 0
+  right = array.length - 1
+  offset = array.first
+
+  while l != r
+    mid = (l+r)/2
+    if array[mid-offset] = mid
+      l = mid + 1
+    else
+      r = mid
+    end
+  end
+
+  return l
+end

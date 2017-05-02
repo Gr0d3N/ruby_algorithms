@@ -10,7 +10,7 @@ def dups?(array, k)
       if ints[array[row][col]]
         row2 = ints[array[row][col]][0]
         col2 = ints[array[row][col]][1]
-        diff = (row-row2-1)*n + (n-col) + (n-col2)
+        diff = (row-row2-1)*n + col + (n-col2)
 
         return true if diff >= k
       end
